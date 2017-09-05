@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require bootstrap_sb_admin_base_v2
+ *= require font-awesome
+ *= require_tree .
+ *= require_self
+ */
+
+.arrow {
+    float: right;
+    line-height: 1.42857;
+}
+
+.glyphicon.arrow:before {
+    content: "\e079";
+}
+
+.active > a > .glyphicon.arrow:before {
+    content: "\e114";
+}
+
+
+/*
+ * Require Font-Awesome
+ * http://fortawesome.github.io/Font-Awesome/
+*/
+
+
+.fa.arrow:before {
+    content: "\f104";
+}
+
+.active > a > .fa.arrow:before {
+    content: "\f107";
+}
+
+.plus-times {
+    float: right;
+}
+
+.fa.plus-times:before {
+    content: "\f067";
+}
+
+.active > a > .fa.plus-times {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.plus-minus {
+    float: right;
+}
+
+.fa.plus-minus:before {
+    content: "\f067";
+}
+
+.active > a > .fa.plus-minus:before {
+    content: "\f068";
+}
