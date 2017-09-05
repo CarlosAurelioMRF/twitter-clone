@@ -6,10 +6,6 @@ Rails.application.routes.draw do
 
   get 'post/index'
 
-  get 'post/follow'
-
-  resources :relationships, :only => [:create, :destroy]
-
   devise_for :users
 
   devise_scope :user do

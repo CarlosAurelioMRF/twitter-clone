@@ -10,9 +10,7 @@
                   <%= post.user.email %>
 
                   <% if current_user.id != post.user.id %>
-                    <%= link_to "Seguir", relationships_path(:user_id => post.user.id), :method => :post, :remote => 'true', class:"btn btn-success" %>
-                  <% else %>
-                    <% link_to 'Deixar de Seguir', post.user.unfollow(current_user), class:"btn btn-danger" %>
+                    <button class="btn btn-success">Seguir</button>
                   <% end %>
               </div>
               <div class="panel-body">
