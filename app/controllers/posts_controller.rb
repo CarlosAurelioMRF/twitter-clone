@@ -3,6 +3,15 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.includes(:user).order("created_at DESC")
+
+    @posts.each do | post |
+      if post.user.email == 'carlos.ribeiiro@hotmail.com'
+        puts 'TESTE ENTREGOU'
+        @user = post.user
+      end
+     end
+
+    current_user.follow(@user)
   end
 
   def new
