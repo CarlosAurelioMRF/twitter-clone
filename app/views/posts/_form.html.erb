@@ -1,4 +1,7 @@
-<h1 class="page-header">Tweet <%= link_to 'Voltar', posts_path, class:"btn btn-success" %></h1>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Novo tweet</h4>
+</div>
 
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
@@ -13,25 +16,39 @@
     </div>
   <% end %>
 
-  <div class="row">
-      <div class="col-lg-12">
-          <div class="panel panel-default">
-              <div class="panel-body">
-                  <div class="row">
-                      <div class="col-lg-12">
-                          <form role="form">
-                              <div class="form-group">
-                                  <label><%= form.label :message %></label>
-                                  <%= form.text_area :message, id: :post_message, :rows => 4, :maxlenght => 155, class:"form-control" %>
-                              </div>
-                              <div class="actions">
-                                <%= form.submit "Postar", class:"btn btn-success"%>
-                              </div>
-                          </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+      <div class="modal-body">
+          <form role="form">
+              <div class="form-group">
+                  <label><%= form.label :message %></label>
+                  <%= form.text_area :message, id: :post_message, :rows => 4, class:"form-control", id: 'text-message' %>
+                  <div id="charNum"></div>
+              </div>
+              <div class="modal-footer">
+                  <div class="actions">
+                      <%= link_to 'Voltar', posts_path, class:"btn btn-default" %>
+                      <%= form.submit "Postar", class:"btn btn-success"%>
+                  </div>
+              </div>
+          </form>
+      </div>
 <% end %>
+<script>
+  $(document).ready( function() {
+          var maxLen = 155;
+
+          $('#text-message').keypress(function(event){
+              var Length = $("#text-message").val().length;
+              var AmountLeft = maxLen - Length;
+              $('#txt-length-left').html(AmountLeft);
+              if(Length >= maxLen){
+                  if (event.which != 8) {
+                      return false;
+                  }
+              }
+
+               var char = (maxLen - Length) - 1;
+              $('#charNum').text(char + ' caracteres restantes.');
+          });
+
+  });
+</script>

@@ -1,69 +1,12 @@
-<% unless notice.nil? %>
-  <p id="notice" class="alert alert-success"><%= notice %></p>
-<% end %>
-
-<div class="navbar-default sidebar" role="navigation">
-    <div class="sidebar-nav navbar-collapse">
-        <ul class="nav" id="side-menu">
-        <li>
-            <div class="row">
-                <div class="col-lg-11 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><%= current_user.following.count %></div>
-
-                                    <div>Seguindo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <%= link_to  '<div class="panel-footer">
-                                                  <span class="pull-left">Ver Todos</span>
-                                                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                  <div class="clearfix"></div>
-                                              </div>'.html_safe, following_relationship_index_path, method: :get %>
-                    </div>
-                </div>
-              </div>
-            <li>
-
-            <li>
-              <div class="row">
-                <div class="col-lg-11 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"><%= current_user.followers.count %></div>
-
-                                    <div>Seguidores</div>
-                                </div>
-                            </div>
-                        </div>
-                        <%= link_to  '<div class="panel-footer">
-                                                  <span class="pull-left">Ver Todos</span>
-                                                  <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                                  <div class="clearfix"></div>
-                                              </div>'.html_safe, followers_relationship_index_path, method: :get %>
-                    </div>
-                </div>
-              </div>
-            <li>
-        </ul>
-    </div>
-</div>
-
+<%= render partial: "layouts/header" %>
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
+                <br />
+                <% unless notice.nil? %>
+                  <p id="notice" class="alert alert-success"><%= notice %></p>
+                <% end %>
                 <h1 class="page-header">Postagens <%= link_to 'Novo Tweet', new_post_path, data: {toggle: "modal", target: "#my-modal"}, class:"btn btn-default" %></h1>
 
                 <div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="my-modalLabel" aria-hidden="true">
@@ -76,19 +19,29 @@
                 <% @posts.each do |post| %>
                   <div class="row">
                       <div class="col-lg-12">
-                          <div class="panel panel-primary">
+                          <div class="panel panel-default">
                               <div class="panel-heading">
                                   <%= post.user.email %>
 
+                                  <% @found_one = false %>
                                   <% if current_user.id != post.user.id %>
-                                    <button class="btn btn-success">Seguir</button>
+                                      <% current_user.following.each do | following | %>
+                                          <% if following.id == post.user.id %>
+                                              <% @found_one = true %>
+                                          <% end %>
+                                      <% end %>
+                                      <% if @found_one %>
+                                          <%= link_to "Deixar de Seguir", unfollow_path(id: post.user.id), class: "btn btn-outline btn-danger" %>
+                                      <% else %>
+                                          <%= link_to "Seguir", follow_path(id: post.user.id), class: "btn btn-outline btn-success" %>
+                                       <% end %>
                                   <% end %>
                               </div>
                               <div class="panel-body">
                                   <p><%= post.message %></p>
                               </div>
                               <div class="panel-footer">
-                                  <span class="glyphicon glyphicon-time"></span> <%= post.created_at %>
+                                  <span class="glyphicon glyphicon-time"></span> <%= post.created_at.strftime("Postado em: %d/%m/%Y as %H:%M") %>
 
                                   <% if current_user.id == post.user.id %>
                                       <%= link_to 'Deletar', '#', data: {toggle: "modal", target: "#myModal"}, class:"btn btn-danger" %>
@@ -120,3 +73,4 @@
         </div>
     </div>
 </div>
+<%= render partial: "layouts/footer" %>

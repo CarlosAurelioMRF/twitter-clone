@@ -8,10 +8,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-resources :relationship, :only => [] do
-  get :following, on: :collection
-  get :followers, on: :collection
-end
+resources :relationship, :only => []
+
+get 'relationship/following'
+get 'relationship/followers'
+
+get 'relationship/follow', to: "relationship#follow", :as => 'follow'
+get 'relationship/unfollow', to: "relationship#unfollow", :as => 'unfollow'
 
   devise_scope :user do
     authenticated :user do

@@ -1,3 +1,25 @@
-          <% @users.each do | user | %>
-            <%= user.email %>
-          <% end %>
+<%= render partial: "layouts/header" %>
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header"><%= @title %></h1>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <% @users.each do | user | %>
+                                  <a href="#" class="list-group-item">
+                                      <i class="fa fa-user fa-fw"></i> <%= user.email %>
+                                      <span class="pull-right text-muted small"><em><%= user.last_sign_in_at.strftime("Último acesso em: %d/%m/%Y as %H:%M") %></em>
+                                      </span>
+                                  </a>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= render partial: "layouts/footer" %>

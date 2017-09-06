@@ -1,0 +1,93 @@
+<div id="wrapper">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <%= link_to 'Twitter Clone', posts_path, class:"navbar-brand" %>
+        </div>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <%= current_user.email %> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><%= link_to '<i class="fa fa-user fa-fw"></i> Editar Perfil'.html_safe, edit_user_registration_path %></li>
+                    </li>
+                    <li class="divider"></li>
+                    <li><%=link_to '<i class="fa fa-sign-out fa-fw"></i> Sair'.html_safe, destroy_user_session_path, :method => :delete %></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <%= link_to '<i class="fa fa-files-o fa-fw"></i> Todas as postagens'.html_safe, posts_path(list: 'all') %>
+                </li>
+                <li>
+                    <%= link_to '<i class="fa fa-files-o fa-fw"></i> Postagens dos meus seguidos'.html_safe, posts_path(list: 'following') %>
+                </li>
+                <li>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-red">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-support fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"><%= current_user.following.count %></div>
+
+                                                <div>Seguindo</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%= link_to  '<div class="panel-footer">
+                                                              <span class="pull-left">Ver Todos</span>
+                                                              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                              <div class="clearfix"></div>
+                                                          </div>'.html_safe, relationship_following_path, method: :get %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-green">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-support fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge"><%= current_user.followers.count %></div>
+
+                                                <div>Seguidores</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%= link_to  '<div class="panel-footer">
+                                                              <span class="pull-left">Ver Todos</span>
+                                                              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                                              <div class="clearfix"></div>
+                                                          </div>'.html_safe, relationship_followers_path, method: :get %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
