@@ -2,7 +2,7 @@
 
 Aplicação desenvolvida para atender um desafio solicitado para o cargo de desenvolvedor web.
 
-Está aplicação é um clone do Twitter em sua forma mais generica.
+Está aplicação é um clone do Twitter em sua forma mais generica. Veja em https://twitter-cloneapp.herokuapp.com/
 
 # Funcionalidades
 
