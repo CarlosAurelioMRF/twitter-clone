@@ -1,24 +1,27 @@
-# README
+# Twitter Clone APP - Desafio Web
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicação desenvolvida para atender um desafio solicitado para o cargo de desenvolvedor web.
 
-Things you may want to cover:
+Está aplicação é um clone do Twitter em sua forma mais generica.
 
-* Ruby version
+# Funcionalidades
 
-* System dependencies
+* Registro de Usuários
 
-* Configuration
+* Autenticação
 
-* Database creation
+* Atualização de informação cadastradas
 
-* Database initialization
+* Publicar pequenas postagens
 
-* How to run the test suite
+* Capacidade de seguir outros usuários
 
-* Services (job queues, cache servers, search engines, etc.)
+* Visualizar tweets de todos usuários ou apenas de seguidores
 
-* Deployment instructions
+# Desenvolvimento
 
-* ...
+Aplicação desenvolvida com Ruby on Rails integrado com MongoDB
+
+* on Rails 5.1.3
+
+* Mongoid ~> 6.0
